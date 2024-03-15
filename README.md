@@ -12,27 +12,6 @@
 
 # テーブル設計
 
-## items テーブル
-
-| Column          | Type       | Options, Memo                  |
-| --------------- | ---------- | ------------------------------ |
-| image           | ////////// | ActiveStorage, 入力必須         |
-| title           | string     | null: false, limit: 40         |
-| description     | text       | null: false, limit: 1000       |
-| category        | ////////// | ActiveHash, 入力必須            |
-| condition       | ////////// | ActiveHash, 入力必須            |
-| shipping_cost   | ////////// | ActiveHash, 入力必須            |
-| shipping_origin | ////////// | ActiveHash, 入力必須            |
-| shipping_date   | ////////// | ActiveHash, 入力必須            |
-| price           | decimal    | null: false, 300~9999999       |
-| user_id         | references | null: false, foreign_key: true |
-
-
-### Association
-
-- belongs_to :user
-- has_one :order
-
 ## users テーブル
 
 | Column             | Type   | Options                   |
@@ -52,21 +31,54 @@
 - has_many :orders
 
 
+## items テーブル
+
+| Column           | Type       | Options, Memo                  |
+| ---------------- | ---------- | ------------------------------ |
+| title            | string     | null: false, limit: 40         |
+| description      | text       | null: false, limit: 1000       |
+| category_id      | integer    | ActiveHash, 入力必須           |
+| condition_id     | integer    | ActiveHash, 入力必須           |
+| shipping_cost_id | integer    | ActiveHash, 入力必須           |
+| prefecture_id    | integer    | ActiveHash, 入力必須           |
+| shipping_date_id | integer    | ActiveHash, 入力必須           |
+| price            | integer    | null: false, 300~9999999       |
+| user             | references | null: false, foreign_key: true |
+※imageはActiveStorage, 入力必須
+
+
+### Association
+
+- belongs_to :user
+- has_one :order
+
 ## orders テーブル
 
-| Column           | Type   | Options             |
-| ---------------- | ------ | ------------------- |
-| postal_code      | string | null: false         |
-| prefectures      | ////// | ActiveHash, 入力必須 |
-| Municipality     | string | null: false         |
-| house_number     | string | null: false         |
-| building_name    | string |                     |
-| telephone_number | string | null: false         |
+| Column | Type       | Options                       |
+| ------ | ---------- | ----------------------------- |
+| user   | references | null:false, foreign_key: true |
+| item   | references | null:false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one :delivery
+
+## deliveries テーブル
+
+| Column           | Type    | Options, Memo        |
+| ---------------- | ------- | -------------------- |
+| postal_code      | string  | null: false          |
+| prefecture_id    | integer | ActiveHash, 入力必須 |
+| municipality     | string  | null: false          |
+| house_number     | string  | null: false          |
+| building_name    | string  |                      |
+| telephone_number | string  | null: false          |
+
+### Association
+
+- belongs_to :order
 
 
 
