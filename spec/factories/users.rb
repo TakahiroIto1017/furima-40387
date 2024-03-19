@@ -3,7 +3,7 @@ FactoryBot.define do
     japanese = Gimei.name
 
     email                 { Faker::Internet.email }
-    password              { Faker::Internet.password(min_length: 6) }
+    password              { Faker::Internet.password(min_length: 6, mix_case: true) }
     password_confirmation { password }
     nickname              { Faker::Internet.username }
     first_name            { japanese.first.kanji }
