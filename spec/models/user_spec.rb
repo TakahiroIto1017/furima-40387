@@ -1,31 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   before do
     @user = FactoryBot.build(:user)
   end
 
   describe 'ユーザー新規登録' do
-
     context '新規登録できるとき' do
-
       it '全てのカラムにデータが存在すれば登録できる' do
         expect(@user).to be_valid
       end
-
     end
 
     context '新規登録できないとき' do
-
       it 'nicknameが空では登録できない' do
-        @user.nickname = ""
+        @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       it 'emailが空では登録できない' do
-        @user.email = ""
+        @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
@@ -86,13 +81,13 @@ RSpec.describe User, type: :model do
       it 'first_nameに全角（漢字・ひらがな・カタカナ）以外が含まれていると登録できない' do
         @user.first_name = 'takahiro'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it 'last_nameに全角（漢字・ひらがな・カタカナ）以外が含まれていると登録できない' do
         @user.last_name = 'ito'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'first_name_guideが空では登録できない' do
@@ -110,13 +105,13 @@ RSpec.describe User, type: :model do
       it 'first_name_guideにカタカナ以外が含まれていると登録できない' do
         @user.first_name_guide = 'takahiro'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name guide is invalid")
+        expect(@user.errors.full_messages).to include('First name guide is invalid')
       end
 
       it 'last_name_guideにカタカナ以外が含まれていると登録できない' do
         @user.last_name_guide = 'ito'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name guide is invalid")
+        expect(@user.errors.full_messages).to include('Last name guide is invalid')
       end
 
       it 'birthdayが空では登録できない' do
@@ -124,9 +119,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
-
     end
-
   end
-
 end
