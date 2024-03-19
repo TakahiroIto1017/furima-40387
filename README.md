@@ -37,11 +37,11 @@
 | ---------------- | ---------- | ------------------------------ |
 | title            | string     | null: false, limit: 40         |
 | description      | text       | null: false, limit: 1000       |
-| category_id      | integer    | ActiveHash, 入力必須           |
-| condition_id     | integer    | ActiveHash, 入力必須           |
-| shipping_cost_id | integer    | ActiveHash, 入力必須           |
-| prefecture_id    | integer    | ActiveHash, 入力必須           |
-| shipping_date_id | integer    | ActiveHash, 入力必須           |
+| category_id      | integer    | null: false, ActiveHash        |
+| condition_id     | integer    | null: false, ActiveHash        |
+| shipping_cost_id | integer    | null: false, ActiveHash        |
+| prefecture_id    | integer    | null: false, ActiveHash        |
+| shipping_date_id | integer    | null: false, ActiveHash        |
 | price            | integer    | null: false, 300~9999999       |
 | user             | references | null: false, foreign_key: true |
 ※imageはActiveStorage, 入力必須
