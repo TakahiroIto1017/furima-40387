@@ -23,7 +23,7 @@ RSpec.describe Item, type: :model do
       it 'titleが40字を超えると出品できない' do
         @item.title = Faker::Lorem.characters(number: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Title is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Title is too long (maximum is 40 characters)')
       end
 
       it 'descriptionが空では出品できない' do
@@ -35,7 +35,7 @@ RSpec.describe Item, type: :model do
       it 'descriptionが1000字を超えると出品できない' do
         @item.description = Faker::Lorem.paragraph_by_chars(number: 1001, supplemental: false)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Description is too long (maximum is 1000 characters)')
       end
 
       it 'category_idが空では出品できない' do
@@ -77,19 +77,19 @@ RSpec.describe Item, type: :model do
       it 'priceが300未満では出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
       it 'priceが9999999を超えると出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
 
       it 'priceが半角数値でないと出品できない' do
-        @item.price = "a1000"
+        @item.price = 'a1000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '画像が添付されていないと出品できない' do
@@ -97,9 +97,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-
     end
-
   end
-
 end
