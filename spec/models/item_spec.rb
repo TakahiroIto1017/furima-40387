@@ -39,31 +39,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが空では出品できない' do
-        @item.category_id = ''
+        @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'condition_idが空では出品できない' do
-        @item.condition_id = ''
+        @item.condition_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
       it 'shipping_cost_idが空では出品できない' do
-        @item.shipping_cost_id = ''
+        @item.shipping_cost_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
       end
 
       it 'prefecture_idが空では出品できない' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'shipping_date_idが空では出品できない' do
-        @item.shipping_date_id = ''
+        @item.shipping_date_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date can't be blank")
       end
@@ -96,6 +96,12 @@ RSpec.describe Item, type: :model do
         @item.image.purge
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
+      it 'userが紐づいていないと出品できない' do
+        @item.user = User.new.id
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
