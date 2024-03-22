@@ -37,11 +37,11 @@
 | ---------------- | ---------- | ------------------------------ |
 | title            | string     | null: false, limit: 40         |
 | description      | text       | null: false, limit: 1000       |
-| category_id      | integer    | ActiveHash, 入力必須           |
-| condition_id     | integer    | ActiveHash, 入力必須           |
-| shipping_cost_id | integer    | ActiveHash, 入力必須           |
-| prefecture_id    | integer    | ActiveHash, 入力必須           |
-| shipping_date_id | integer    | ActiveHash, 入力必須           |
+| category_id      | integer    | null: false, ActiveHash, 1~10  |
+| condition_id     | integer    | null: false, ActiveHash, 1~6   |
+| shipping_cost_id | integer    | null: false, ActiveHash, 1~2   |
+| prefecture_id    | integer    | null: false, ActiveHash, 1~47  |
+| shipping_date_id | integer    | null: false, ActiveHash, 1~3   |
 | price            | integer    | null: false, 300~9999999       |
 | user             | references | null: false, foreign_key: true |
 ※imageはActiveStorage, 入力必須
@@ -67,15 +67,15 @@
 
 ## deliveries テーブル
 
-| Column           | Type       | Options, Memo                 |
-| ---------------- | ---------- | ----------------------------- |
-| postal_code      | string     | null: false                   |
-| prefecture_id    | integer    | ActiveHash, 入力必須          |
-| municipality     | string     | null: false                   |
-| house_number     | string     | null: false                   |
-| building_name    | string     |                               |
-| telephone_number | string     | null: false                   |
-| order            | references | null:false, foreign_key: true |
+| Column           | Type       | Options, Memo                  |
+| ---------------- | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| prefecture_id    | integer    | ActiveHash, 1~47               |
+| municipality     | string     | null: false                    |
+| house_number     | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_number | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
