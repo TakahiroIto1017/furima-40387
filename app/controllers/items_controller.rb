@@ -44,9 +44,8 @@ class ItemsController < ApplicationController
   end
 
   def others_index
-    if current_user.id != Item.find(params[:id]).user.id
-      redirect_to root_path
-    end
-  end
+    return unless current_user.id != Item.find(params[:id]).user.id
 
+    redirect_to root_path
+  end
 end
