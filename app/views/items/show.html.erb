@@ -35,9 +35,8 @@
 
       <% else %>
 
-        <%# 商品購入機能を実装後に条件分岐 %>
         <%# unless @item.order.present? %>
-          <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+          <%= link_to "購入画面に進む", "#", data: { turbo: false },class:"item-red-btn"%>
         <%# end %>
 
       <% end %>
