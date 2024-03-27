@@ -25,7 +25,7 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !@item.order.present? %>
 
       <% if current_user.id == @item.user.id %>
         <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
@@ -33,11 +33,7 @@
         <%= link_to "削除", item_path, data: {turbo_method: :delete}, class:"item-destroy" %>
 
       <% else %>
-
-        <% unless @item.order.present? %>
-          <%= link_to "購入画面に進む", item_orders_path(params[:id]), data: { turbo: false }, class:"item-red-btn"%>
-        <% end %>
-
+        <%= link_to "購入画面に進む", item_orders_path(params[:id]), data: { turbo: false }, class:"item-red-btn"%>
       <% end %>
 
     <% end %>
