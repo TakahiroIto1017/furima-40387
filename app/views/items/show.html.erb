@@ -35,9 +35,9 @@
 
       <% else %>
 
-        <%# unless @item.order.present? %>
-          <%= link_to "購入画面に進む", "#", data: { turbo: false },class:"item-red-btn"%>
-        <%# end %>
+        <% unless @item.order.present? %>
+          <%= link_to "購入画面に進む", item_orders_path(params[:id]), data: { turbo: false }, class:"item-red-btn"%>
+        <% end %>
 
       <% end %>
 
