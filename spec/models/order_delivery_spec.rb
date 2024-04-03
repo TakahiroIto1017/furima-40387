@@ -83,6 +83,18 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include('Telephone number is invalid. Only 10 or 11 numbers')
       end
 
+      it 'user_idが空では購入できない' do
+        @order_delivery.user_id = ''
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では購入できない' do
+        @order_delivery.item_id = ''
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Item can't be blank")
+      end
+
       it 'tokenが空では購入できない' do
         @order_delivery.token = ''
         @order_delivery.valid?
