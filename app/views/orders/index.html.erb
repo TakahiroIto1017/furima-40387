@@ -1,3 +1,5 @@
+<%= include_gon %>
+
 <%= render "shared/second-header"%>
 
 <div class='transaction-contents'>
@@ -35,6 +37,7 @@
 
     <%= render 'shared/error_messages', model: f.object %>
 
+    <%= f.hidden_field :price, value: @item.price %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
